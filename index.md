@@ -52,7 +52,7 @@ By the end of the course, students will be able to:
 |:---:|---|---|---|
 | 1 | Introduction | Lecture | The Intellectual Map of AI Infrastructure |
 | 2 | GPU/NPU Architecture | Lecture | GPU Architecture |
-| 3 | GPU/NPU Architecture | Lecture | NPU Architecture and 国产算力生态 |
+| 3 | GPU/NPU Architecture | Lecture | NPU Architecture |
 | 4 | CUDA Programming | Lecture | CUDA Programming Through the Lens of GPU Architecture |
 | 5 | CUDA Programming | Lecture | CUDA Programming as Hardware–Software Co-design |
 | 6 | GPU Kernel Development | In-class Hackathon | Agentic CUDA Kernel Development and Optimization |
