@@ -10,10 +10,10 @@ description: A hands-on Machine Learning Systems course on GPU/NPU architecture,
     <h1>AI Infrastructure</h1>
     <p class="lead">Learn the full stack behind modern AI—and build, profile, and optimize the systems that make it work.</p>
     <div class="course-meta" aria-label="Course information">
-      <span><strong>Instructor</strong> Li Shang</span>
+      <span class="instructor-list"><strong>Instructors</strong> Professor Congliang Chen, Li Shang, and Yuedong Xu</span>
       <span><strong>Term</strong> Term 1, AY 2026–2027</span>
       <span><strong>Format</strong> Lectures + in-class hackathons</span>
-      <span><strong>Contact</strong> <a href="mailto:lishang@slai.edu.cn">lishang@slai.edu.cn</a></span>
+      <span><strong>Course contact</strong> Li Shang · <a href="mailto:lishang@slai.edu.cn">lishang@slai.edu.cn</a></span>
     </div>
   </div>
 </section>
@@ -22,16 +22,18 @@ description: A hands-on Machine Learning Systems course on GPU/NPU architecture,
 
 ## Course overview {#overview}
 
-AI Infrastructure—also known as Machine Learning Systems—examines how algorithms, systems software, and hardware are co-designed to make AI workloads efficient, scalable, and reliable. The course spans GPU and NPU architecture, memory hierarchies, communication systems, accelerator programming, compilers and runtimes, distributed training, and large language model (LLM) inference.
+AI Infrastructure (also known as Machine Learning Systems) examines how algorithms, systems software, and hardware are co-designed to make AI workloads efficient, scalable, and reliable. The course covers the full stack: GPU and NPU architecture, memory hierarchies, communication systems, accelerator programming, compilers and runtimes, large model (LM) distributed training and inference.
 
-This is a hands-on, engineering-driven course. Lectures establish architectural and systems foundations; in-class hackathons ask students to build, profile, debug, and optimize components used in modern training and inference systems. The work emphasizes quantitative reasoning, reproducible measurement, and iterative improvement.
+The course is hands-on and engineering-driven. Lectures establish architectural and systems foundations; in-class hackathons then ask students to build, profile, debug, and optimize components used in modern training and inference systems. Emphasis is placed on quantitative reasoning, reproducible measurement, and iterative system improvement.
 
 <div class="callout">
-  <strong>A central theme: agentic AI for systems development.</strong>
-  Students will explore multi-agent workflows for accelerator profiling, kernel generation and optimization, experiment management, and training and inference infrastructure—while learning how to verify correctness and performance.
+  <strong>A recurring theme is agentic AI for systems development.</strong>
+  Students will explore multi-agent workflows for accelerator profiling, kernel generation and optimization, experiment management, and training and inference infrastructure. The goal is to understand both what these workflows can automate and how their outputs should be evaluated and verified.
 </div>
 
-The course will also feature industry-defined project opportunities. Candidate topics may be contributed by AI-infrastructure organizations, including Huawei, Tencent, and ByteDance. Final partners, topics, awards, research opportunities, and internships are subject to confirmation.
+The course will also feature industry-defined project opportunities. Candidate topics may be contributed by AI-infrastructure organizations, such as Huawei, Tencent, and ByteDance. Final partners, topics, awards, research opportunities, and internships are subject to confirmation and will be announced through the course website.
+
+We believe the future of AI infrastructure development should not be limited to a small number of highly specialized engineers inside large organizations. By combining systems thinking, engineering practice, and agentic methods, students will learn to build and optimize sophisticated AI systems while developing the judgment needed to validate correctness, performance, and reliability.
 
 ### Prerequisites
 
@@ -71,13 +73,12 @@ By the end of the course, students will be able to:
 
 Assessment emphasizes engineering ability, quantitative evidence, reproducibility, and clear technical communication.
 
-| Component | Primary evidence |
-|---|---|
-| In-class hackathons | Correct implementations, profiling evidence, engineering logs, and concise reflections |
-| Industry-defined semester project | System design, measured improvement over a baseline, reproducibility package, final report, and demonstration |
-| Technical communication and participation | Design reviews, presentations, constructive collaboration, and evidence-based discussion |
+| Component | Weight | Primary evidence |
+|---|:---:|---|
+| In-class hackathons / homework / quizzes | 50% | Correct solutions and implementations, quantitative evidence, engineering logs, and concise reflections |
+| Course project | 50% | System design, measured improvement over a baseline, reproducibility package, final report, and demonstration |
 
-> **To be finalized:** component weights, submission rules, late-work policy, and individual/team contribution requirements will be confirmed before the course begins.
+> **To be finalized:** submission rules, late-work policy, and individual/team contribution requirements will be confirmed before the course begins.
 
 ## Readings and tools {#resources}
 

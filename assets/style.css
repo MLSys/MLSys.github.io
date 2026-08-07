@@ -45,6 +45,7 @@ footer { padding: 2rem 0; color: var(--muted); border-top: 1px solid var(--line)
 .course-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem 1.5rem; max-width: 780px; margin-top: 2rem; padding: 1.15rem 1.3rem; background: rgba(255,255,255,.78); border: 1px solid rgba(39,93,173,.16); border-radius: 1rem; backdrop-filter: blur(10px); }
 .course-meta span { color: var(--muted); }
 .course-meta strong { display: inline-block; min-width: 5.2rem; color: var(--ink); }
+.course-meta .instructor-list { grid-column: 1 / -1; }
 .course-content { padding: 3rem 0 5rem; max-width: 980px; }
 .course-content h2 { margin: 3.5rem 0 1rem; padding-top: 1rem; font-size: clamp(1.8rem, 3vw, 2.45rem); line-height: 1.15; letter-spacing: -.03em; }
 .course-content h3 { margin: 2rem 0 .6rem; font-size: 1.25rem; }
