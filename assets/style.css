@@ -43,17 +43,14 @@ footer { padding: 2rem 0; color: var(--muted); border-top: 1px solid var(--line)
 .course-hero { padding: 6.5rem 0 4.5rem; background: radial-gradient(circle at 80% 20%, #d8e9ff 0, transparent 33%), linear-gradient(135deg, #f8fbff, #eaf0f7); }
 .course-hero h1 { margin-bottom: 1rem; }
 .slogan { max-width: 900px; font-size: clamp(1.25rem, 2.5vw, 1.75rem); font-weight: 650; line-height: 1.35; color: #284766; letter-spacing: -.015em; }
-.course-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem 1.5rem; max-width: 780px; margin-top: 2rem; padding: 1.15rem 1.3rem; background: rgba(255,255,255,.78); border: 1px solid rgba(39,93,173,.16); border-radius: 1rem; backdrop-filter: blur(10px); }
-.course-meta span { color: var(--muted); }
-.course-meta strong { display: inline-block; min-width: 5.2rem; color: var(--ink); }
-.course-meta .instructor-list { grid-column: 1 / -1; }
+.course-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 2.5rem; max-width: 900px; margin-top: 2.25rem; padding: 1.5rem 1.7rem; background: rgba(255,255,255,.78); border: 1px solid rgba(39,93,173,.16); border-radius: 1rem; backdrop-filter: blur(10px); }
+.course-meta span { min-width: 0; color: var(--muted); font-size: 1rem; line-height: 1.45; }
+.course-meta strong { display: block; min-width: 0; margin-bottom: .25rem; color: var(--accent); font-size: .72rem; font-weight: 800; letter-spacing: .1em; line-height: 1.2; text-transform: uppercase; }
 .course-content { padding: 3rem 0 5rem; max-width: 980px; }
 .course-content h2 { margin: 3.5rem 0 1rem; padding-top: 1rem; font-size: clamp(1.8rem, 3vw, 2.45rem); line-height: 1.15; letter-spacing: -.03em; }
 .course-content h3 { margin: 2rem 0 .6rem; font-size: 1.25rem; }
 .course-content p, .course-content li { color: #334057; }
 .course-content li { margin-bottom: .55rem; }
-.callout { margin: 2rem 0; padding: 1.25rem 1.4rem; border-left: 4px solid var(--signal); border-radius: 0 .8rem .8rem 0; background: #edf8f5; color: #24433f; }
-.callout strong { display: block; margin-bottom: .25rem; color: #125e55; }
 .course-content table { width: 100%; margin: 1.2rem 0 1.8rem; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); font-size: .92rem; }
 .course-content th { background: #1c476c; color: white; text-align: left; }
 .course-content th, .course-content td { padding: .72rem .8rem; border: 1px solid var(--line); vertical-align: top; }

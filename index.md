@@ -8,9 +8,9 @@ description: A hands-on Machine Learning Systems course on GPU/NPU architecture,
   <div class="wrap">
     <p class="eyebrow">Machine Learning Systems · Fall 2026</p>
     <h1>AI Infrastructure</h1>
-    <p class="lead slogan">Not everyone can become a great AI infrastructure architect, but a great architect can emerge from anywhere.</p>
+    <p class="lead slogan">Not every student will become a great AI infrastructure architect, but a great architect can emerge from any student.</p>
     <div class="course-meta" aria-label="Course information">
-      <span class="instructor-list"><strong>Instructors</strong> Professor Congliang Chen, Li Shang, and Yuedong Xu</span>
+      <span><strong>Instructors</strong> Professor Congliang Chen, Li Shang, and Yuedong Xu</span>
       <span><strong>Term</strong> Term 1, AY 2026–2027</span>
       <span><strong>Format</strong> Lectures + in-class hackathons</span>
       <span><strong>Course contact</strong> Li Shang · <a href="mailto:lishang@slai.edu.cn">lishang@slai.edu.cn</a></span>
@@ -26,10 +26,7 @@ AI Infrastructure (also known as Machine Learning Systems) examines how algorith
 
 The course is hands-on and engineering-driven. Lectures establish architectural and systems foundations; in-class hackathons then ask students to build, profile, debug, and optimize components used in modern training and inference systems. Emphasis is placed on quantitative reasoning, reproducible measurement, and iterative system improvement.
 
-<div class="callout">
-  <strong>A recurring theme is agentic AI for systems development.</strong>
-  Students will explore multi-agent workflows for accelerator profiling, kernel generation and optimization, experiment management, and training and inference infrastructure. The goal is to understand both what these workflows can automate and how their outputs should be evaluated and verified.
-</div>
+A recurring theme is agentic AI for systems development. Students will explore multi-agent workflows for accelerator profiling, kernel generation and optimization, experiment management, and training and inference infrastructure. The goal is to understand both what these workflows can automate and how their outputs should be evaluated and verified.
 
 The course will also feature industry-defined project opportunities. Candidate topics may be contributed by AI-infrastructure organizations, such as Huawei, Tencent, and ByteDance. Final partners, topics, awards, research opportunities, and internships are subject to confirmation and will be announced through the course website.
 
