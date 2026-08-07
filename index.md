@@ -12,8 +12,7 @@ description: A hands-on Machine Learning Systems course on GPU/NPU architecture,
     <div class="course-meta" aria-label="Course information">
       <span><strong>Instructors</strong> Professor Congliang Chen, Li Shang, and Yuedong Xu</span>
       <span><strong>Term</strong> Term 1, AY 2026–2027</span>
-      <span><strong>Format</strong> Lectures + in-class hackathons</span>
-      <span><strong>Course contact</strong> Li Shang · <a href="mailto:lishang@slai.edu.cn">lishang@slai.edu.cn</a></span>
+      <span><strong>Format</strong> Build what you use, and use what you build</span>
     </div>
   </div>
 </section>
