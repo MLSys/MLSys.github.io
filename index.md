@@ -8,7 +8,7 @@ description: A hands-on Machine Learning Systems course on GPU/NPU architecture,
   <div class="wrap">
     <p class="eyebrow">Machine Learning Systems · Fall 2026</p>
     <h1>AI Infrastructure</h1>
-    <p class="lead">Not everyone can become a great AI Infra architecture, but a great architect may come from anyone.</p>
+    <p class="lead slogan">Not everyone can become a great AI infrastructure architect, but a great architect can emerge from anywhere.</p>
     <div class="course-meta" aria-label="Course information">
       <span class="instructor-list"><strong>Instructors</strong> Professor Congliang Chen, Li Shang, and Yuedong Xu</span>
       <span><strong>Term</strong> Term 1, AY 2026–2027</span>

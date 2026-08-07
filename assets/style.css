@@ -42,6 +42,7 @@ main section, .page { padding: 4rem 0; }
 footer { padding: 2rem 0; color: var(--muted); border-top: 1px solid var(--line); }
 .course-hero { padding: 6.5rem 0 4.5rem; background: radial-gradient(circle at 80% 20%, #d8e9ff 0, transparent 33%), linear-gradient(135deg, #f8fbff, #eaf0f7); }
 .course-hero h1 { margin-bottom: 1rem; }
+.slogan { max-width: 900px; font-size: clamp(1.25rem, 2.5vw, 1.75rem); font-weight: 650; line-height: 1.35; color: #284766; letter-spacing: -.015em; }
 .course-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem 1.5rem; max-width: 780px; margin-top: 2rem; padding: 1.15rem 1.3rem; background: rgba(255,255,255,.78); border: 1px solid rgba(39,93,173,.16); border-radius: 1rem; backdrop-filter: blur(10px); }
 .course-meta span { color: var(--muted); }
 .course-meta strong { display: inline-block; min-width: 5.2rem; color: var(--ink); }
