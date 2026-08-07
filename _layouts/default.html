@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <title>{{ page.title }} · MLSys</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body class="course-site">
+  <header>
+    <nav class="wrap" aria-label="Primary navigation">
+      <a class="brand" href="/">AI Infrastructure</a>
+      <div class="nav-links">
+        <a href="/#overview">Overview</a>
+        <a href="/#outcomes">Outcomes</a>
+        <a href="/#schedule">Schedule</a>
+        <a href="/#assessment">Assessment</a>
+        <a href="/research/">Research</a>
+        <a href="/projects/">Projects</a>
+      </div>
+    </nav>
+  </header>
+  <main>{{ content }}</main>
+  <footer><div class="wrap">AI Infrastructure · Machine Learning Systems · MLSys</div></footer>
+</body>
+</html>
