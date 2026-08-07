@@ -40,12 +40,12 @@ Recommended preparation includes computer architecture, operating systems, machi
 
 By the end of the course, students will be able to:
 
-1. **Explain the architectural foundations of modern AI infrastructure** and analyze how workloads interact with accelerators, memory, interconnects, compilers, runtimes, training frameworks, and inference systems.
-2. **Develop practical optimization skills** by implementing, profiling, debugging, and optimizing accelerator kernels and system components.
-3. **Apply systems thinking and hardware–software co-design** to identify bottlenecks and translate algorithmic requirements into efficient implementations.
-4. **Build and evaluate agentic systems-development workflows** for profiling, analysis, kernel generation, debugging, experiment management, and optimization.
-5. **Work across emerging AI-computing ecosystems**, including GPU, NPU, and 国产算力生态 platforms, with attention to portability and deployment.
-6. **Design next-generation intelligent computing systems** using system expertise, empirical evidence, and agentic methods.
+1. **Explain the architectural foundations of modern AI infrastructure.** Analyze how AI workloads interact with accelerators, memory hierarchies, interconnects, compilers, runtimes, distributed training frameworks, and inference systems.
+2. **Develop practical optimization skills.** Implement, profile, debug, and optimize accelerator kernels and system components across computation, memory, communication, training, and inference workloads.
+3. **Apply systems thinking and hardware–software co-design.** Identify bottlenecks across the stack and translate high-level algorithmic requirements into efficient implementations under real engineering constraints.
+4. **Build and evaluate agentic systems-development workflows.** Use LLM-based agents for profiling, analysis, kernel generation, debugging, experiment management, and optimization while verifying correctness and performance.
+5. **Work across emerging AI-computing ecosystems.** Adapt tools and methods to GPU, NPU, and domestic accelerator platforms and address practical portability, deployment, and optimization challenges.
+6. **Design next-generation intelligent computing systems.** Integrate system expertise, empirical evidence, and agentic methods to propose and evaluate new infrastructure designs independently.
 
 ## Tentative schedule {#schedule}
 
