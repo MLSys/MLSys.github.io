@@ -9,7 +9,7 @@ organization: Machine Learning Systems, Agentic Computing, and 国产算力生�
 - `_layouts/` — GitHub Pages layout for Markdown content
 - `research/` — research themes and active questions
 - `courses/` — course and teaching materials
-- `projects/` — open-source projects and artifacts
+- `projects/` — industry-proposed course projects and submission expectations
 - `publications/` — papers, reports, and books
 - `blog/` — technical notes and updates
 - `assets/` — shared styles and future media

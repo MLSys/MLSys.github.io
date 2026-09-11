@@ -1,7 +1,161 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Projects · MLSys</title><link rel="stylesheet" href="../assets/style.css"></head><body>
-<header><nav class="wrap"><a class="brand" href="../">MLSys</a><div class="nav-links"><a href="./">Projects</a></div></nav></header>
-<main class="page wrap"><p class="eyebrow">Course projects</p><h1>Built with industry, grounded in real systems challenges.</h1><p class="lead">Course projects will be co-developed with industry partners to connect classroom learning with practical AI-infrastructure problems.</p><div class="grid">
-<article class="card"><h2>Industry-defined challenges</h2><p>Candidate projects may address accelerator programming, profiling, kernel optimization, compilers and runtimes, distributed training, inference systems, and agentic development workflows.</p></article>
-<article class="card"><h2>Engineering with evidence</h2><p>Student teams will define baselines, build working systems, measure performance, verify correctness, and communicate reproducible results.</p></article>
-<article class="card"><h2>Cross-platform experience</h2><p>Projects may span GPU, NPU, and domestic accelerator ecosystems, with an emphasis on portability, deployment, and optimization under real engineering constraints.</p></article>
-</div><div class="note"><strong>Announcement:</strong> Confirmed industry partners, project topics, mentorship arrangements, awards, research opportunities, and internships will be announced on this page. All details are subject to confirmation.</div></main><footer><div class="wrap">MLSys Course Projects</div></footer></body></html>
+---
+layout: default
+title: Course Projects
+description: Four industry-contributed AI infrastructure course projects from ByteDance and Tencent.
+---
+
+<section class="projects-hero">
+  <div class="wrap">
+    <p class="eyebrow">Fall 2026 · Industry Projects</p>
+    <h1>Course Projects</h1>
+    <p class="lead">Each project addresses a real AI-infrastructure challenge contributed by an industry partner. The briefs define the problem, expected outcomes, and evaluation criteria while leaving implementation choices open to each student team.</p>
+  </div>
+</section>
+
+<div class="projects-content wrap">
+  <section class="project-intro" aria-labelledby="project-expectations">
+    <div>
+      <p class="section-kicker">Project expectations</p>
+      <h2 id="project-expectations">Build, demonstrate, and evaluate</h2>
+    </div>
+    <div>
+      <p>Teams may select any appropriate architecture, framework, programming language, or optimization method. Every project must result in a clearly justified technical design, a working implementation, a verifiable end-to-end demonstration, and a reproducible evaluation against a stated baseline. The four briefs below specify the required evidence for each topic.</p>
+    </div>
+  </section>
+
+  <article class="project-brief" id="project-1">
+    <header class="project-brief-heading">
+      <span class="project-number">01</span>
+      <div>
+        <p class="project-label">Project Title</p>
+        <h2>Full-stack Inference Optimization Harness for Coding-Agent Workloads</h2>
+        <p class="organization"><span>Contributing Organization</span> ByteDance</p>
+      </div>
+    </header>
+    <div class="project-body">
+      <section>
+        <h3>Background</h3>
+        <p>The cost and throughput of an inference service are jointly determined by kernels, the serving engine, communication, KV-cache management, storage, and distributed scheduling. Manual layer-by-layer optimization covers only a small portion of this design space and can easily converge on a local optimum. Coding-agent workloads make this challenge especially important because they combine very long inputs with KV-cache hit rates above 90 percent.</p>
+      </section>
+      <section>
+        <h3>Project Objective</h3>
+        <p>The objective is to build an automated optimization harness for a provided serving-engine baseline, model, and target hardware. The harness should form a closed workflow that diagnoses bottlenecks, proposes and applies optimizations, executes controlled experiments, analyzes results, and detects regressions. The resulting system should improve serving cost-effectiveness without violating the specified service-quality constraints.</p>
+      </section>
+      <section>
+        <h3>Project Requirements</h3>
+        <p>The system must provide a reproducible replay of a representative coding-agent workload containing long inputs and a KV-cache hit rate above 90 percent. Disaggregated prefill and decode must be evaluated as the primary deployment setting and compared with a colocated prefill-and-decode baseline. Under a fixed model and hardware configuration, the team must measure QPS while satisfying the specified time-to-first-token (TTFT) and time-per-output-token (TPOT) service-level objectives. The evaluation must isolate the contribution of major optimizations and examine important interactions across system layers. The choice of optimization algorithms, agent workflow, software stack, and system architecture is left to the team.</p>
+      </section>
+      <section>
+        <h3>Required Submission</h3>
+        <p>The submission must include a technical proposal describing the architecture, optimization loop, design rationale, experiment plan, and risks; the complete implementation with configuration and environment information; and a verifiable demo that replays the target workload, applies at least one optimization, checks service correctness and SLO compliance, and reports before-and-after measurements. A final report must document the baseline, QPS, TTFT, TPOT, cost assumptions, ablation results, reproducibility procedure, limitations, and unsuccessful approaches.</p>
+      </section>
+      <section>
+        <h3>Evaluation Criteria</h3>
+        <p>Evaluation will consider functional correctness, the completeness and automation of the optimization loop, improvement over the baseline under the required SLOs, quality of cross-layer analysis, reproducibility, and the clarity of the technical justification.</p>
+      </section>
+    </div>
+  </article>
+
+  <article class="project-brief" id="project-2">
+    <header class="project-brief-heading">
+      <span class="project-number">02</span>
+      <div>
+        <p class="project-label">Project Title</p>
+        <h2>Model–Harness Co-design RL Pipeline Based on DeepSeek Harness</h2>
+        <p class="organization"><span>Contributing Organization</span> ByteDance</p>
+      </div>
+    </header>
+    <div class="project-body">
+      <section>
+        <h3>Background</h3>
+        <p>An agent's capability depends on both its model and its harness. The model provides the core policy, while the harness controls execution and embeds policy decisions such as context compaction, reasoning format, and tool-result retention. A model may become strongly coupled to the harness used during training, which means that a fixed, manually designed harness may not produce the best overall agent.</p>
+      </section>
+      <section>
+        <h3>Project Objective</h3>
+        <p>The objective is to build a reproducible model–harness co-design reinforcement-learning pipeline based on DeepSeek Harness. The pipeline should expose important harness policies as trainable or searchable decisions and enable the model and harness to evolve jointly for a provided task distribution.</p>
+      </section>
+      <section>
+        <h3>Project Requirements</h3>
+        <p>The experimental design must include context compaction, reasoning format, and tool-result retention within the harness-policy space. It must compare three controlled settings: a fixed harness, separate optimization of the model and harness, and joint model–harness optimization. All comparisons must use comparable training and inference budgets. The evaluation must report task success rate, token consumption, tool-call cost, and stability across task settings, together with ablation studies that identify the contribution of individual harness-policy choices. The specific reinforcement-learning method, search strategy, parameterization, and implementation framework are open design decisions.</p>
+      </section>
+      <section>
+        <h3>Required Submission</h3>
+        <p>The submission must include a technical proposal defining the trainable policy space, learning or search procedure, controls, budget, metrics, and risk-management plan; a working pipeline with code, configurations, task definitions, and reproducible launch instructions; and a verifiable demo that runs a small end-to-end training or optimization cycle and evaluates the resulting model–harness configuration on held-out tasks. A final report must present the controlled comparison, benchmark results, ablations, statistical or repeated-run evidence, cost analysis, limitations, and conclusions about model–harness compatibility.</p>
+      </section>
+      <section>
+        <h3>Evaluation Criteria</h3>
+        <p>Evaluation will consider pipeline correctness, experimental rigor, fairness of the controlled comparison, task-performance and efficiency gains, strength of the ablation evidence, reproducibility, and whether the conclusions follow from the reported results.</p>
+      </section>
+    </div>
+  </article>
+
+  <article class="project-brief" id="project-3">
+    <header class="project-brief-heading">
+      <span class="project-number">03</span>
+      <div>
+        <p class="project-label">Project Title</p>
+        <h2>Subgraph-fusion-based Mega-kernel Generation</h2>
+        <p class="organization"><span>Contributing Organization</span> Tencent</p>
+      </div>
+    </header>
+    <div class="project-body">
+      <section>
+        <h3>Background</h3>
+        <p>Advertising-model training frequently contains fine-grained operators. Repeated kernel launches and device-memory transfers for intermediate results create substantial scheduling overhead and memory pressure. Fusing multiple operators into larger mega-kernels can reduce these costs, but automatically performing the fusion while preserving both forward- and backward-pass correctness remains challenging.</p>
+      </section>
+      <section>
+        <h3>Project Objective</h3>
+        <p>The objective is to create a prototype that transforms a provided PyTorch computation subgraph into one or more fused mega-kernels covering forward and backward computation. The prototype should reduce memory traffic or memory footprint and improve execution throughput while remaining numerically consistent with the unfused reference.</p>
+      </section>
+      <section>
+        <h3>Project Requirements</h3>
+        <p>The project will use a provided PyTorch subgraph, representative input shapes, and reference input/output cases. The solution must identify fusible operators, determine defensible fusion boundaries, generate or construct the fused forward and backward computation, and provide repeatable correctness checks against the reference implementation. The evaluation must use a single GPU and include subgraphs in which element-wise operations account for a significant portion of execution time. The team must measure latency or throughput, peak memory use, and relevant memory-traffic indicators across representative inputs. The code-generation approach, kernel language, compiler stack, scheduling strategy, and memory-management technique are not prescribed.</p>
+      </section>
+      <section>
+        <h3>Required Submission</h3>
+        <p>The submission must include a technical proposal explaining fusion eligibility, boundary selection, forward and backward generation, memory optimization, correctness tolerances, and evaluation methodology; a working prototype with source code, environment details, and reproducible commands; and a verifiable demo that accepts at least one provided subgraph, produces or invokes the fused implementation, checks forward outputs and backward gradients against the reference, and displays performance and memory results. A final report must compare the fused and unfused implementations, explain the sources of improvement, document cases that cannot be fused, and discuss limitations.</p>
+      </section>
+      <section>
+        <h3>Evaluation Criteria</h3>
+        <p>Evaluation will consider forward and backward correctness, the generality and soundness of the fusion process, reduction in launch or memory overhead, measured speedup and memory benefit, robustness across test cases, reproducibility, and the quality of the systems analysis.</p>
+      </section>
+    </div>
+  </article>
+
+  <article class="project-brief" id="project-4">
+    <header class="project-brief-heading">
+      <span class="project-number">04</span>
+      <div>
+        <p class="project-label">Project Title</p>
+        <h2>Communication–Computation Fusion for Advertising-model Training</h2>
+        <p class="organization"><span>Contributing Organization</span> Tencent</p>
+      </div>
+    </header>
+    <div class="project-body">
+      <section>
+        <h3>Background</h3>
+        <p>Distributed training of large sparse advertising models commonly uses expert or model parallelism, which introduces substantial All-to-All communication. When communication and computation execute serially, communication becomes a major performance bottleneck. A fine-grained overlap between communication and computation can hide part of this cost and improve cluster-level training efficiency.</p>
+      </section>
+      <section>
+        <h3>Project Objective</h3>
+        <p>The objective is to design a distributed parallelization scheme for a provided PyTorch layer dominated by GEMM computation and to implement at least one communication–computation fusion kernel that overlaps GEMM with All-to-All communication. The implementation should preserve numerical correctness and improve end-to-end throughput relative to a non-overlapped baseline.</p>
+      </section>
+      <section>
+        <h3>Project Requirements</h3>
+        <p>The team must justify its parallel decomposition, fine-grained pipeline, scheduling policy, and data-dependency management. The solution must be tested using the provided layer and reference cases on multiple GPUs, including a cross-node configuration, and must analyze the behavioral and performance differences between intra-node and inter-node communication. Measurements must quantify exposed communication time, the fraction of communication hidden by overlap, kernel or layer latency, and end-to-end throughput. The implementation may use any suitable communication library, kernel framework, runtime, or scheduling method.</p>
+      </section>
+      <section>
+        <h3>Required Submission</h3>
+        <p>The submission must include a technical proposal describing the parallel strategy, fusion boundary, pipeline and dependency design, correctness plan, hardware topology, baseline, and evaluation methodology; a working multi-GPU implementation with source code, configuration, environment information, and launch instructions; and a verifiable demo that runs both the non-overlapped baseline and fused implementation, checks numerical outputs and gradients where applicable, and reports communication and throughput measurements. A final report must present intra-node and inter-node results, explain the degree of achieved overlap, analyze bottlenecks and scaling behavior, and document limitations and failed approaches.</p>
+      </section>
+      <section>
+        <h3>Evaluation Criteria</h3>
+        <p>Evaluation will consider numerical correctness, soundness of the parallel and pipeline design, effectiveness of communication hiding, end-to-end throughput improvement, quality of the topology-aware analysis, scalability, reproducibility, and clarity of the engineering evidence.</p>
+      </section>
+    </div>
+  </article>
+
+  <aside class="project-note">
+    <strong>Project resources.</strong> Baselines, test cases, hardware access, service-level targets, and submission logistics will be distributed with the corresponding project brief. Teams must state any assumptions when a required resource or target is unavailable.
+  </aside>
+</div>
