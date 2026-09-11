@@ -73,7 +73,6 @@ footer { padding: 2rem 0; color: var(--muted); border-top: 1px solid var(--line)
 .project-brief-heading:focus-visible { outline: 3px solid rgba(39,93,173,.35); outline-offset: -3px; }
 .project-brief[open] .project-brief-heading { border-bottom: 1px solid var(--line); }
 .project-number { color: #9aabc0; font-size: 1.65rem; font-weight: 800; line-height: 1; letter-spacing: -.04em; }
-.project-label { margin: 0 0 .25rem; color: var(--signal); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .project-brief h2 { max-width: 800px; margin: 0; font-size: clamp(1.45rem, 2.8vw, 2rem); line-height: 1.22; letter-spacing: -.028em; }
 .organization { margin: .9rem 0 0; color: var(--ink); font-weight: 700; }
 .organization span { margin-right: .55rem; color: var(--accent); font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
@@ -85,7 +84,6 @@ footer { padding: 2rem 0; color: var(--muted); border-top: 1px solid var(--line)
 .project-body section:last-child { border-bottom: 0; }
 .project-body h3 { margin: 0 0 .55rem; color: var(--ink); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }
 .project-body p { max-width: 840px; margin: 0; color: #3f4c62; }
-.project-note { margin-top: 2.5rem; padding: 1.15rem 1.3rem; background: #edf8f5; border-left: 4px solid var(--signal); color: #31534e; }
 @media (max-width: 760px) {
   nav { align-items: flex-start; flex-direction: column; padding: 1rem 0; }
   .grid { grid-template-columns: 1fr; }
