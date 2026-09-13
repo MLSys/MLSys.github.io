@@ -50,7 +50,7 @@ By the end of the course, students will be able to:
 
 | Week | Theme | Format | Topic |
 |:---:|---|---|---|
-| 1 | Introduction | Lecture | The Intellectual Map of AI Infrastructure |
+| 1 | Introduction | Lecture | [The Intellectual Map of AI Infrastructure](/lectures/MLSys-Lecture-1-online.pdf) |
 | 2 | GPU/NPU Architecture | Lecture | GPU Architecture |
 | 3 | GPU/NPU Architecture | Lecture | NPU Architecture |
 | 4 | CUDA Programming | Lecture | CUDA Programming Through the Lens of GPU Architecture |
