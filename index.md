@@ -51,7 +51,7 @@ By the end of the course, students will be able to:
 | Week | Theme | Format | Topic |
 |:---:|---|---|---|
 | 1 | Introduction | Lecture | [The Intellectual Map of AI Infrastructure](/lectures/MLSys-Lecture-1-online.pdf) |
-| 2 | GPU/NPU Architecture | Lecture | GPU Architecture |
+| 2 | GPU/NPU Architecture | Lecture | GPU Architecture<br>**Lecture slides:** [Part 1](/lectures/week-02/MLSys-Lecture-2-GPU1-online.pdf) · [Part 2](/lectures/week-02/MLSys-Lecture-2-GPU2-online.pdf)<br>**Supplemental readings:** [Buck (2004)](/lectures/week-02/Buck-2004.pdf) · [Buck (2015)](/lectures/week-02/Buck-2015.pdf) |
 | 3 | GPU/NPU Architecture | Lecture | NPU Architecture |
 | 4 | CUDA Programming | Lecture | CUDA Programming Through the Lens of GPU Architecture |
 | 5 | CUDA Programming | Lecture | CUDA Programming as Hardware–Software Co-design |
