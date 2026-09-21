@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Course Projects
-description: Four industry-contributed AI infrastructure course projects from ByteDance and Tencent.
+description: Five industry-contributed AI infrastructure course projects from Huawei, ByteDance, and Tencent.
 ---
 
 <section class="projects-hero">
@@ -19,13 +19,46 @@ description: Four industry-contributed AI infrastructure course projects from By
       <h2 id="project-expectations">Develop a verifiable systems solution</h2>
     </div>
     <div>
-      <p>Each team is expected to turn its selected topic into a working systems solution: an automated inference-optimization workflow, a model–harness co-design pipeline, a single-GPU mega-kernel prototype, or a multi-GPU communication–computation fusion implementation. The technical approach is open, but it must be justified by the characteristics of the target workload and execution environment. Every project must include a reproducible baseline, a complete technical design, an executable implementation, a verifiable end-to-end demo with correctness checks, and quantitative evidence using the metrics defined in its project brief.</p>
+      <p>Each team is expected to turn its selected topic into a working systems solution: an Ascend A3 attention kernel, an automated inference-optimization workflow, a model–harness co-design pipeline, a single-GPU mega-kernel prototype, or a multi-GPU communication–computation fusion implementation. The technical approach is open, but it must be justified by the characteristics of the target workload and execution environment. Every project must include a reproducible baseline, a complete technical design, an executable implementation, a verifiable end-to-end demo with correctness checks, and quantitative evidence using the metrics defined in its project brief.</p>
     </div>
   </section>
 
   <details class="project-brief" id="project-1">
     <summary class="project-brief-heading">
       <span class="project-number">01</span>
+      <div>
+        <h2>Efficient KDA Chunk Prefill on Ascend A3 with EasyASC</h2>
+        <p class="organization"><span>Contributing Organization</span> Huawei</p>
+      </div>
+      <span class="project-toggle" aria-hidden="true"></span>
+    </summary>
+    <div class="project-body">
+      <section>
+        <h3>Background</h3>
+        <p>Kimi Delta Attention (KDA) is a recurrent linear-attention mechanism that uses a gated state update. During prefill, processing one token at a time leaves substantial parallelism unused. A chunk-prefill implementation instead reorganizes the work within each group of tokens into matrix and vector operations while carrying the attention state from one chunk to the next. On Ascend A3, this design must also account for the device's Cube and Vector execution paths, on-chip storage limits, synchronization costs, and data exchange through global-memory workspaces. The full specification, reference implementation, test cases, and evaluation template are available in the <a href="https://github.com/ddddwee1/kda_a3_practice">project repository and exercise package</a>.</p>
+      </section>
+      <section>
+        <h3>Project Objective</h3>
+        <p>The objective is to implement an efficient KDA chunk-prefill forward operator for Ascend A3 using the EasyASC Python domain-specific language. The project must also develop a reusable method for deciding how to divide, organize, and schedule the operator across multiple kernels. Predictions from this method should guide the implementation and then be tested against correctness results, execution traces, simulator estimates, and available hardware measurements.</p>
+      </section>
+      <section>
+        <h3>Project Requirements</h3>
+        <p>The implementation must include Q/K normalization, exploit parallelism among tokens within each chunk, preserve the state dependency between chunks, accept an optional initial state, and correctly handle a final partial chunk. The team must compare at least two materially different kernel-partition strategies. For each strategy, the analysis must explain the computation assigned to Cube and Vector pipelines, intermediate-data layouts, synchronization and buffering, logical global-memory traffic, expected L2-cache reuse, device-memory traffic, and numerical-precision choices. The implementation must obey the exercise package's host-operation restrictions and pass its required forward-correctness tests. A token-by-token recurrent decode loop is a reference for checking semantics, not the target implementation.</p>
+      </section>
+      <section>
+        <h3>Required Submission</h3>
+        <p>The submission must include the EasyASC kernel source, a complete forward entry point, environment and execution instructions, and correctness reports produced with the published exercise package. It must also include a kernel-partition evaluation model in the form of a report, tool, skill, or program that another developer can apply to a new input shape or operator. The final report must document both candidate strategies, predictions made before measurement, per-kernel and total execution time, workspace and cache assumptions, numerical results, execution traces that explain pipeline behavior, discrepancies between predictions and measurements, limitations, and reproducibility steps. Hardware-performance claims must identify the Ascend A3 system, CANN version, and measurement method.</p>
+      </section>
+      <section>
+        <h3>Evaluation Criteria</h3>
+        <p>Evaluation will consider forward correctness, effective use of chunk-level parallelism, the quality of the Cube/Vector decomposition and scheduling design, measured kernel performance, numerical robustness, the strength of the prediction-versus-measurement analysis, reproducibility, and whether the evaluation method is useful beyond this single implementation.</p>
+      </section>
+    </div>
+  </details>
+
+  <details class="project-brief" id="project-2">
+    <summary class="project-brief-heading">
+      <span class="project-number">02</span>
       <div>
         <h2>Full-stack Inference Optimization Harness for Coding-Agent Workloads</h2>
         <p class="organization"><span>Contributing Organization</span> ByteDance</p>
@@ -56,9 +89,9 @@ description: Four industry-contributed AI infrastructure course projects from By
     </div>
   </details>
 
-  <details class="project-brief" id="project-2">
+  <details class="project-brief" id="project-3">
     <summary class="project-brief-heading">
-      <span class="project-number">02</span>
+      <span class="project-number">03</span>
       <div>
         <h2>Model–Harness Co-design RL Pipeline Based on DeepSeek Harness</h2>
         <p class="organization"><span>Contributing Organization</span> ByteDance</p>
@@ -89,9 +122,9 @@ description: Four industry-contributed AI infrastructure course projects from By
     </div>
   </details>
 
-  <details class="project-brief" id="project-3">
+  <details class="project-brief" id="project-4">
     <summary class="project-brief-heading">
-      <span class="project-number">03</span>
+      <span class="project-number">04</span>
       <div>
         <h2>Subgraph-fusion-based Mega-kernel Generation</h2>
         <p class="organization"><span>Contributing Organization</span> Tencent</p>
@@ -122,9 +155,9 @@ description: Four industry-contributed AI infrastructure course projects from By
     </div>
   </details>
 
-  <details class="project-brief" id="project-4">
+  <details class="project-brief" id="project-5">
     <summary class="project-brief-heading">
-      <span class="project-number">04</span>
+      <span class="project-number">05</span>
       <div>
         <h2>Communication–Computation Fusion for Advertising-model Training</h2>
         <p class="organization"><span>Contributing Organization</span> Tencent</p>
