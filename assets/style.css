@@ -84,6 +84,23 @@ footer { padding: 2rem 0; color: var(--muted); border-top: 1px solid var(--line)
 .project-body section:last-child { border-bottom: 0; }
 .project-body h3 { margin: 0 0 .55rem; color: var(--ink); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }
 .project-body p { max-width: 840px; margin: 0; color: #3f4c62; }
+.homework-hero { padding-bottom: 3.5rem; }
+.homework-site-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: 900px; margin-top: 2rem; }
+.homework-site-link { display: block; min-width: 0; padding: 1.2rem 1.4rem; border: 1px solid var(--line); border-radius: 1rem; background: var(--panel); text-decoration: none; box-shadow: 0 8px 24px rgba(22, 33, 58, .04); }
+.homework-site-link:hover, .homework-site-link:focus-visible { border-color: var(--accent); }
+.homework-site-link span { display: block; color: var(--signal); font-size: .78rem; font-weight: 800; letter-spacing: .05em; }
+.homework-site-link strong { display: block; margin: .45rem 0; color: var(--accent); font-size: 1.12rem; }
+.homework-site-link small { color: var(--muted); overflow-wrap: anywhere; }
+.homework-content { max-width: 980px; padding: 1rem 0 5rem; }
+.homework-content section { padding: 3rem 0; border-bottom: 1px solid var(--line); }
+.homework-content section:last-child { border-bottom: 0; }
+.homework-content h2 { margin: .35rem 0 1rem; font-size: clamp(1.8rem, 3vw, 2.45rem); line-height: 1.15; letter-spacing: -.03em; }
+.homework-content p { max-width: 860px; color: #334057; }
+.homework-deadlines { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1.8rem; }
+.homework-deadline { padding: 1.5rem; border: 1px solid var(--line); border-radius: 1rem; background: var(--panel); }
+.homework-deadline h3 { margin: 0 0 .8rem; font-size: 1.12rem; }
+.homework-deadline p { margin: .8rem 0 0; }
+.homework-deadline .homework-date { color: var(--accent); font-weight: 750; }
 @media (max-width: 760px) {
   nav { align-items: flex-start; flex-direction: column; padding: 1rem 0; }
   .grid { grid-template-columns: 1fr; }
@@ -98,4 +115,5 @@ footer { padding: 2rem 0; color: var(--muted); border-top: 1px solid var(--line)
   .project-toggle { grid-column: 2; min-width: 0; text-align: left; }
   .project-body { padding: .2rem 1.25rem 1.1rem; }
   .organization span { display: block; margin-bottom: .15rem; }
+  .homework-site-links, .homework-deadlines { grid-template-columns: 1fr; }
 }
