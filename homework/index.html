@@ -4,47 +4,55 @@ title: Homework
 description: Agent-Guided Transformer Co-design homework, deadlines, and access links.
 ---
 
-<section class="projects-hero homework-hero">
+<section class="projects-hero">
   <div class="wrap">
     <p class="eyebrow">Fall 2026 · Homework</p>
     <h1>Homework</h1>
     <p class="lead">Agent-Guided Transformer Co-design</p>
-    <div class="homework-site-links" aria-label="Homework site access">
-      <a class="homework-site-link" href="https://linux-slai.tail6d76d1.ts.net:8443/">
-        <span>Public internet · 公网访问</span>
-        <strong>Open the homework site ↗</strong>
-        <small>https://linux-slai.tail6d76d1.ts.net:8443/</small>
-      </a>
-      <a class="homework-site-link" href="http://10.204.87.113:8001/">
-        <span>Internal network · 内网访问</span>
-        <strong>Open the homework site ↗</strong>
-        <small>http://10.204.87.113:8001/</small>
-      </a>
+    <div class="grid" aria-label="Homework site access">
+      <div class="card">
+        <span class="tag">Public internet · 公网访问</span>
+        <h2>Public access</h2>
+        <p>Open the assignment, submission form, and leaderboard from the public internet.</p>
+        <a class="button" href="https://linux-slai.tail6d76d1.ts.net:8443/">Open homework site ↗</a>
+      </div>
+      <div class="card">
+        <span class="tag">Internal network · 内网访问</span>
+        <h2>Internal access</h2>
+        <p>Use this entrance when connected to the course's internal network.</p>
+        <a class="button secondary" href="http://10.204.87.113:8001/">Open homework site ↗</a>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="homework-content wrap">
-  <section aria-labelledby="homework-brief">
-    <p class="section-kicker">Homework brief</p>
-    <h2 id="homework-brief">Agent-Guided Transformer Co-design</h2>
-    <p>Transformer inference performance depends on both accelerator resources and the programs that use them. Hardware choices affect compute throughput, data movement, and storage, while program choices determine how effectively those resources serve prompt prefill and autoregressive decode.</p>
-    <p>In this homework, use your own AI agent to explore the design space. Submit one accelerator configuration and two assembly programs that run on the same hardware, produce correct Transformer outputs, and improve the combined simulated score. The <a href="https://linux-slai.tail6d76d1.ts.net:8443/statement/">full assignment statement</a> provides the exact workload, rules, starter package, and submission format.</p>
+<div class="projects-content wrap">
+  <section class="project-intro" aria-labelledby="homework-brief">
+    <div>
+      <p class="section-kicker">Homework brief</p>
+      <h2 id="homework-brief">Agent-Guided Transformer Co-design</h2>
+    </div>
+    <div>
+      <p>Transformer inference performance depends on both accelerator resources and the programs that use them. Hardware choices affect compute throughput, data movement, and storage, while program choices determine how effectively those resources serve prompt prefill and autoregressive decode.</p>
+      <p>In this homework, use your own AI agent to explore the design space. Submit one accelerator configuration and two assembly programs that run on the same hardware, produce correct Transformer outputs, and improve the combined simulated score. The <a href="https://linux-slai.tail6d76d1.ts.net:8443/statement/">full assignment statement</a> provides the exact workload, rules, starter package, and submission format.</p>
+    </div>
   </section>
 
   <section aria-labelledby="submission-deadlines">
-    <p class="section-kicker">Submission deadlines · 提交时间</p>
-    <h2 id="submission-deadlines">Two milestones</h2>
-    <div class="homework-deadlines">
-      <article class="homework-deadline">
+    <div class="section-head">
+      <p class="section-kicker">Submission deadlines · 提交时间</p>
+      <h2 id="submission-deadlines">Two milestones</h2>
+    </div>
+    <div class="grid">
+      <article class="card">
         <h3>Milestone 1 · First stage <span lang="zh-CN">/ 第一阶段</span></h3>
-        <p class="homework-date"><time datetime="2026-10-07T12:00:00+08:00">October 7, 2026, 12:00 (Beijing time)</time><br><span lang="zh-CN">2026年10月7日中午12:00（北京时间）</span></p>
+        <p><strong><time datetime="2026-10-07T12:00:00+08:00">October 7, 2026, 12:00 (Beijing time)</time><br><span lang="zh-CN">2026年10月7日中午12:00（北京时间）</span></strong></p>
         <p>Submissions received by then will inform the selection of collaboration proposals before the October 10 college project application deadline. You may continue improving and submitting afterward.</p>
         <p lang="zh-CN">届时收到的提交将用于遴选合作提议，以便在10月10日学院立项截止前推进。此后仍可继续改进并提交作业。</p>
       </article>
-      <article class="homework-deadline">
+      <article class="card">
         <h3>Milestone 2 · Final submission <span lang="zh-CN">/ 最终提交</span></h3>
-        <p class="homework-date"><time datetime="2026-10-12T12:00:00+08:00">October 12, 2026, 12:00 (Beijing time)</time><br><span lang="zh-CN">2026年10月12日中午12:00（北京时间）</span></p>
+        <p><strong><time datetime="2026-10-12T12:00:00+08:00">October 12, 2026, 12:00 (Beijing time)</time><br><span lang="zh-CN">2026年10月12日中午12:00（北京时间）</span></strong></p>
         <p>The server stops accepting new submissions at this time. Submissions received before the deadline may finish grading afterward.</p>
         <p lang="zh-CN">这是作业最终提交截止时间；届时服务器停止接收新提交。截止前收到的提交可在此后完成评分。</p>
       </article>
