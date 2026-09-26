@@ -53,17 +53,17 @@ By the end of the course, students will be able to:
 | 1 | Introduction | Lecture | [The Intellectual Map of AI Infrastructure](/lectures/MLSys-Lecture-1-online.pdf) |
 | 2 | GPU/NPU Architecture | Lecture | GPU Architecture<br>**Lecture slides:** [Part 1](/lectures/week-02/MLSys-Lecture-2-GPU1-online.pdf) · [Part 2](/lectures/week-02/MLSys-Lecture-2-GPU2-online.pdf)<br>**Supplemental readings:** [Buck (2004)](/lectures/week-02/Buck-2004.pdf) · [Buck (2015)](/lectures/week-02/Buck-2015.pdf) |
 | 3 | GPU/NPU Architecture | Lecture | NPU Architecture<br>**Lecture slides:** [AI Infrastructure Summary](/lectures/week-03/AI_Infrastructure_Summary.pdf) · [Systolic Arrays](/lectures/week-03/Systolic_Arrays.pdf) · [OpenAI Jalapeño](/lectures/week-03/OpenAI_Jalapeno.pdf) · [Google TPU](/lectures/week-03/Google_TPU.pdf) |
-| 4 | CUDA Programming | Lecture | CUDA Programming Through the Lens of GPU Architecture |
-| 5 | CUDA Programming | Lecture | CUDA Programming as Hardware–Software Co-design |
-| 6 | GPU Kernel Development | In-class Hackathon | Agentic CUDA Kernel Development and Optimization |
-| 7 | NPU Kernel Development | In-class Hackathon | Agentic NPU Kernel Development and Optimization |
-| 8 | NPU Kernel Development | In-class Hackathon | Agentic FlashAttention Development and Optimization on NPUs |
-| 9 | LLM Training | Lecture | LLM Training Systems A–Z: Data, Tensor, Pipeline, and Expert Parallelism |
-| 10 | LLM Training | Lecture | Advanced Topics in Large-scale LLM Training Systems |
-| 11 | LLM Training | In-class Hackathon | Agentic Communication-kernel Development and Optimization |
-| 12 | LLM Training | In-class Hackathon | Agentic Parallel-training Infrastructure Development and Optimization |
-| 13 | LLM Inference | Lecture | LLM Inference Systems A–Z: Performance Optimization |
-| 14 | LLM Inference | In-class Hackathon | Agentic LLM-inference Infrastructure Development and Optimization |
+| 4 | CUDA Programming and DL Compilers | Lecture | CUDA Programming and Deep Learning Compilers: From GPU Architecture to Hardware–Software Co-design |
+| 5 | GPU Kernel Development | In-class Hackathon | Agentic CUDA Kernel Development and Optimization |
+| 6 | NPU Kernel Development | In-class Hackathon | Agentic NPU Kernel Development and Optimization, including FlashAttention |
+| 7 | LLM Training | Lecture | LLM Training Systems A–Z: Data, Tensor, Pipeline, and Expert Parallelism |
+| 8 | LLM Training | Lecture | Advanced Topics in Large-scale LLM Training Systems |
+| 9 | LLM Training | In-class Hackathon | Agentic Communication-kernel Development and Optimization |
+| 10 | LLM Training | In-class Hackathon | Agentic Parallel-training Infrastructure Development and Optimization |
+| 11 | LLM Inference | Lecture | LLM Inference Systems A–Z: Performance Optimization |
+| 12 | LLM Inference | In-class Hackathon | Agentic LLM-inference Infrastructure Development and Optimization |
+| 13 | Agentic Workloads | Lecture | Agentic AI Workloads and Infrastructure |
+| 14 | Agentic Workloads | In-class Hackathon | Agentic Workload Infrastructure Development and Optimization |
 
 ## Assessment {#assessment}
 
