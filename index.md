@@ -59,11 +59,11 @@ By the end of the course, students will be able to:
 | 7 | LLM Training | Lecture | [LLM Parallel Training](/lectures/week-07/Lecture7-LLM-Parallel-Training-1027.pdf) |
 | 8 | LLM Training | Lecture | Advanced Topics in Large-scale LLM Training Systems |
 | 9 | LLM Training | In-class Hackathon | Agentic Communication-kernel Development and Optimization |
-| 10 | LLM Training | In-class Hackathon | Agentic Parallel-training Infrastructure Development and Optimization |
-| 11 | LLM Inference | Lecture | LLM Inference Systems A–Z: Performance Optimization |
-| 12 | LLM Inference | In-class Hackathon | Agentic LLM-inference Infrastructure Development and Optimization |
-| 13 | Agentic Workloads | Lecture | Agentic AI Workloads and Infrastructure |
-| 14 | Agentic Workloads | In-class Hackathon | Agentic Workload Infrastructure Development and Optimization |
+| 10 | LLM Inference | Lecture | LLM Inference Systems A–Z: Performance Optimization |
+| 11 | LLM Inference | In-class Hackathon | Agentic LLM-inference Infrastructure Development and Optimization |
+| 12 | Agentic Workloads | Lecture | Agentic AI Workloads and Infrastructure |
+| 13 | Agentic Workloads | In-class Hackathon | Agentic Workload Infrastructure Development and Optimization |
+| 14 | LLM Industry Project | Kickoff | LLM Industry Project Kickoff |
 
 ## Assessment {#assessment}
 
