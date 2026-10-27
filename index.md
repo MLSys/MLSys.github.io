@@ -56,7 +56,7 @@ By the end of the course, students will be able to:
 | 4 | CUDA Programming and Optimization | Lecture | CUDA Programming and Optimization<br>**Lecture slides:** [Part 1](/lectures/week-04/CUDA_Compiler_Lectures_1.pdf) · [Part 2](/lectures/week-04/CUDA_Compiler_Lectures_2.pdf) |
 | 5 | NPU Kernel Development | In-class Hackathon | Agentic NPU Kernel Development and Optimization, including FlashAttention |
 | 6 | AI Software Stack | Lecture | [The AI Software Stack as an Optimization Problem](/lectures/week-06/Lecture6_AI_Software_Stack_as_Optimization.pdf) |
-| 7 | LLM Training | Lecture | LLM Training Systems A–Z: Data, Tensor, Pipeline, and Expert Parallelism |
+| 7 | LLM Training | Lecture | [LLM Parallel Training](/lectures/week-07/Lecture7-LLM-Parallel-Training-1027.pdf) |
 | 8 | LLM Training | Lecture | Advanced Topics in Large-scale LLM Training Systems |
 | 9 | LLM Training | In-class Hackathon | Agentic Communication-kernel Development and Optimization |
 | 10 | LLM Training | In-class Hackathon | Agentic Parallel-training Infrastructure Development and Optimization |
