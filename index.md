@@ -54,7 +54,7 @@ By the end of the course, students will be able to:
 | 2 | GPU/NPU Architecture | Lecture | GPU Architecture<br>**Lecture slides:** [Part 1](/lectures/week-02/MLSys-Lecture-2-GPU1-online.pdf) · [Part 2](/lectures/week-02/MLSys-Lecture-2-GPU2-online.pdf)<br>**Supplemental readings:** [Buck (2004)](/lectures/week-02/Buck-2004.pdf) · [Buck (2015)](/lectures/week-02/Buck-2015.pdf) |
 | 3 | GPU/NPU Architecture | Lecture | NPU Architecture<br>**Lecture slides:** [AI Infrastructure Summary](/lectures/week-03/AI_Infrastructure_Summary.pdf) · [Systolic Arrays](/lectures/week-03/Systolic_Arrays.pdf) · [OpenAI Jalapeño](/lectures/week-03/OpenAI_Jalapeno.pdf) · [Google TPU](/lectures/week-03/Google_TPU.pdf) · [Ascend NPU](/lectures/week-03/Ascend_AI_Processor_Development_v1.3_20260929.pdf) |
 | 4 | CUDA Programming and Optimization | Lecture | CUDA Programming and Optimization<br>**Lecture slides:** [Part 1](/lectures/week-04/CUDA_Compiler_Lectures_1.pdf) · [Part 2](/lectures/week-04/CUDA_Compiler_Lectures_2.pdf) |
-| 5 | NPU Kernel Development | In-class Hackathon | Agentic NPU Kernel Development and Optimization, including FlashAttention |
+| 5 | NPU Kernel Development | In-class Hackathon | [Agentic NPU Kernel Development and Optimization, including FlashAttention](http://10.204.81.72:2502) |
 | 6 | AI Software Stack | Lecture | [The AI Software Stack as an Optimization Problem](/lectures/week-06/Lecture6_AI_Software_Stack_as_Optimization.pdf) |
 | 7 | LLM Training | Lecture | [LLM Parallel Training](/lectures/week-07/Lecture7-LLM-Parallel-Training-1027.pdf) |
 | 8 | LLM Training | Lecture | [Advanced Topics in Large-scale LLM Training Systems](/lectures/week-08/Lecture8-LLM-Parallel-Training-PartB.pdf) |
