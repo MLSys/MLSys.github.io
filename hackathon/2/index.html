@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A four-GPU lab on scheduling distributed reinforcement learning."><title>Decentralized Reinforcement Learning over the Internet · MLSys</title>
+<link rel="stylesheet" href="/hackathon/2/assets/style.css"><link rel="stylesheet" href="/hackathon/2/assets/portal.css">
+</head><body>
+<a class="skip" href="#main">Skip to main content</a><header><nav class="wrap" aria-label="Primary navigation">
+<a class="brand" href="/hackathon/">AI Infrastructure<small>Project Studio</small></a><div class="nav-links"><a href="/hackathon/" aria-current="page">Hackathons</a><a href="https://mlsys.github.io/">Course home ↗</a></div>
+</nav></header><main id="main"><div class="wrap"><p class="breadcrumb"><a href="/hackathon/">Hackathons</a> / Distributed RL lab</p>
+<div class="detail-hero"><p class="eyebrow">AI Infrastructure · Course lab</p><h1>Decentralized Reinforcement Learning over the Internet</h1></div>
+<div class="detail-layout"><aside class="sidebar" aria-label="Lab navigation"><p class="section-kicker">On this page</p>
+<div class="toc">
+<ul>
+<li><a href="#changelog">Changelog</a></li>
+<li><a href="#why">1. Background</a></li>
+<li><a href="#task">2. The training task</a></li>
+<li><a href="#setup-and-deadline">3. GPU allocation and deadline</a></li>
+<li><a href="#training-update">4. One round of training</a></li>
+<li><a href="#defaults">5. Default configuration</a></li>
+<li><a href="#start">6. Server setup</a></li>
+<li><a href="#worker-scheduling">7. Comparing the two runs</a></li>
+<li><a href="#public-evaluation">8. Public evaluation</a></li>
+<li><a href="#server-submission">9. Submission and grading</a></li>
+</ul>
+</div>
+<a class="button secondary" href="assignment.md" download>Download assignment ↓</a></aside>
+<article class="statement"><h2 id="changelog">Changelog</h2>
+<h3 id="install-on-your-cluster">November 10, 2026 · Install on your own cluster</h3>
+<p><a href="https://linux-slai.tail6d76d1.ts.net/labs/weak-network-rl/mf2502-wordle-rl-starter-source.zip">Download the Wordle RL starter ZIP</a> and upload it to the cluster where you will run the lab. The ZIP contains this handout, the setup scripts, a two-GPU training check, and the evaluator for 32 public Wordle games. Download the model and Python dependencies separately using the commands below. This setup uses your own cluster storage.</p>
+<p>Use a Linux x86-64 NVIDIA GPU container with glibc 2.35 or newer, a driver that supports CUDA 13.0, and <code>git</code>, <code>patch</code>, <code>unzip</code>, and <a href="https://docs.astral.sh/uv/getting-started/installation/">uv</a> 0.11.1 or newer. The commands install Python 3.12, PyTorch 2.13 and vLLM 0.31 in the project's <code>.venv</code>. The <a href="https://huggingface.co/PrimeIntellect/Qwen3-1.7B-Wordle-SFT">model weights</a> are about 4 GB. Installation needs access to GitHub, Hugging Face, PyPI, the PyTorch package index, and NLTK data. If your GPU nodes have limited internet access, use your cluster's login node or approved transfer route to stage the downloads.</p>
+<p>Run these commands in a fresh work directory containing the downloaded ZIP.</p>
+<pre><code class="language-bash">unzip mf2502-wordle-rl-starter-source.zip
+STARTER=$(realpath MF2502-Wordle-RL-starter-source/starter)
+
+mkdir prime-rl
+cd prime-rl
+git init
+git fetch --depth 1 https://github.com/PrimeIntellect-ai/prime-rl.git \
+  9e15490dcab1d506ce3462e69b8aa5dde45c6b3a
+git checkout --detach FETCH_HEAD
+git -c url.https://github.com/.insteadOf=git@github.com: \
+  submodule update --init --depth 1 -- \
+  deps/verifiers deps/renderers deps/prime-envs deps/pydantic-config
+
+uv sync --frozen --python 3.12 \
+  --package prime-rl --package wordle --extra gpu --extra flash-attn
+
+uvx --from huggingface_hub hf download PrimeIntellect/Qwen3-1.7B-Wordle-SFT \
+  --revision b4052d5a2a14f6ecc9f00a85698084df436f626e \
+  --exclude '*.bin' --local-dir model
+
+.venv/bin/python -m nltk.downloader -d &quot;$PWD/nltk_data&quot; \
+  words averaged_perceptron_tagger_eng
+
+patch -p1 &lt; &quot;$STARTER/offline-runtime.patch&quot;
+cp &quot;$STARTER/wordle_taskset.py&quot; deps/verifiers/environments/wordle/wordle/taskset.py
+cp &quot;$STARTER&quot;/{run.sh,smoke.toml,reference.json,reference_eval.py} .
+</code></pre>
+<p>Then open a shell in the same <code>prime-rl/</code> directory on a node with two visible GPUs.</p>
+<pre><code class="language-bash">bash run.sh check
+bash run.sh smoke --run.name setup-check
+</code></pre>
+<p>The check runs one trainer and one worker for three updates. It verifies that the components work together before the lab. The teaching team will provide the four-GPU launcher and announce a submission path for each cluster. See <a href="#public-evaluation">section 8</a> to test the starting model or a saved adapter.</p>
+<h2 id="why">1. Background</h2>
+<p>Large AI models are typically trained in purpose-built data centers, where GPUs exchange data over dedicated high-speed links. GPUs are also spread across personal workstations, university labs, and small organizations. Pooling that hardware over the internet could give independent researchers and small teams a way to train models of their own with less reliance on large data centers.</p>
+<p>Reinforcement learning (RL) offers one way to divide the work. Some machines run the model and generate attempts at a task. Another machine uses those attempts and their rewards to update the model. INTELLECT-2 used this approach to train a 32-billion-parameter reasoning model: a dedicated training cluster updated the model, while GPUs contributed by the community generated training examples. <a href="https://arxiv.org/html/2505.07291v1#S2">INTELLECT-2 technical report</a></p>
+<p>This lab brings that idea down to four GPUs: one trainer and three workers. The GPUs do their work locally and do not exchange weights over a high-speed GPU interconnect. Instead, the trainer writes each update once to a shared network filesystem, and each worker reads it independently. The course adds a fixed delivery delay to model a slow network link, so the experiment works even if the platform puts the GPUs in the same machine. A worker can wait for new weights or keep generating games with the version it already has. Waiting costs time; games produced with older weights can become too old for the trainer to use. You will use Wordle to test that trade-off.</p>
+<h2 id="task">2. The training task</h2>
+<p>Train a <strong>Qwen3-1.7B language model to play Wordle</strong> using <strong>Group Relative Policy Optimization (GRPO)</strong>. Start from the supplied Wordle checkpoint. In each game, the model has up to six guesses to find a hidden five-letter word. After each guess, the game tells the model which letters are correct and which are in the wrong positions. A complete game is one training attempt, also called a <em>rollout</em>. For each hidden word, GRPO compares the rewards from four independent games and uses the differences to update the model.</p>
+<p>The experiment tests <strong>whether workers can contribute more useful games under the same weak-link conditions by changing when they play and when they switch weights</strong>. Use the following two ways of running the same training job.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Run</th>
+<th>How the workers operate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Synchronous reference</strong></td>
+<td>After every training update, the trainer publishes the new weights. All workers wait until each of them has loaded that version. The next batch of games starts only then.</td>
+</tr>
+<tr>
+<td><strong>Your scheduling policy</strong></td>
+<td>Change the scheduling code to decide which worker gets the next group of games, how many groups can be in progress on each worker, and when each worker loads a newer version. A group is four games for the same hidden word. Keep all four games on the same model version through the end of the group. For example, one worker can start another group with its current version while another worker loads the new version.</td>
+</tr>
+</tbody>
+</table></div>
+<p>For the comparison, start both runs from the same checkpoint and keep the training rules, GPU allocation, and link settings the same. Check how long each run waits, how many games the trainer actually uses, and how the trained models perform on the same public words. Choose <strong>one trained checkpoint</strong> (a saved version of your model) for grading. Its win rate on a separate set of Wordle games is your grade. Section 9 lists the files to submit.</p>
+<h2 id="setup-and-deadline">3. GPU allocation and deadline</h2>
+<p>Each student completes the lab individually with <strong>four GPUs</strong>. Run one trainer and three inference workers, one process per GPU. The course supplies the starting model, training configuration, and server setup.</p>
+<p>You may start training during or after class and continue until the evening deadline on the day of the lab. Choose when to run short comparisons and when to let a promising run train longer. Save and check a trained checkpoint before submitting. The teaching team will announce the exact deadline. Submit from your own course storage as described in section 9.</p>
+<h2 id="training-update">4. One round of training</h2>
+<ol>
+<li><strong>The workers play.</strong> A worker plays four games for each assigned word, starting each game from scratch. It returns the model's guesses, the clues the game gave it, and the final reward. The record includes the version of the model and the probabilities it assigned to the text it generated.</li>
+<li><strong>The trainer collects complete groups.</strong> The default batch is six groups of four games, for 24 games in one update. A win earns a reward of 1. A loss can earn partial credit. At the guess limit, the last guess earns one point per correctly placed letter and half a point per correct letter in the wrong place, divided by five. Four equal rewards give GRPO no relative signal about which attempt to favor.</li>
+<li><strong>The trainer updates the model and publishes new weights.</strong> The trainer changes a small set of model weights called a <em>LoRA adapter</em>. It writes the adapter once to the shared network filesystem. Each worker waits for the course's delivery delay, then reads and loads the adapter from the filesystem while keeping the starting model in memory.</li>
+</ol>
+<p>The trainer checks how old a group is when it takes it for an update. With the default two-version limit, a trainer on version 8 can use complete groups played with versions 8, 7, and 6. When the trainer moves to version 9, a version-6 group still waiting in the queue expires. A GPU can finish every game it was given and still contribute little to training if too many groups expire.</p>
+<h2 id="defaults">5. Default configuration</h2>
+<p>The table lists the current defaults. The course will publish the final training and link settings with the launch instructions.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Starting model</td>
+<td><code>PrimeIntellect/Qwen3-1.7B-Wordle-SFT</code>, already fine-tuned to follow the Wordle game format.</td>
+</tr>
+<tr>
+<td>Training algorithm</td>
+<td>GRPO with LoRA rank 16, alpha 32, and learning rate <code>1e-5</code>.</td>
+</tr>
+<tr>
+<td>Batch and task stream</td>
+<td>6 groups of 4 games per update. Use the course's sequence of target words and its reward rules. The groups that reach training may differ between schedules.</td>
+</tr>
+<tr>
+<td>Game limits</td>
+<td>Up to 6 guesses and 1,024 generated tokens per model response. The pilot starts with a 120-second timeout per game.</td>
+</tr>
+<tr>
+<td>Weight updates</td>
+<td>The trainer writes each completed update to the shared network filesystem. A worker can start loading it after the course's delivery delay and can use it once loading finishes.</td>
+</tr>
+<tr>
+<td>Maximum age</td>
+<td>At most 2 versions behind the trainer. A training batch may contain complete groups from different eligible versions.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Use the course model, task stream, rewards, batch size, optimizer, game limits, link settings, and GPU allocation for both runs. Change the scheduling decisions described in section 2. Use games generated within the same run for its training updates.</p>
+<h2 id="start">6. Server setup</h2>
+<p>Follow the <a href="#install-on-your-cluster">installation instructions above</a> from your own cluster. The optional two-GPU check writes its logs to <code>runs/setup-check/logs/latest/</code> and LoRA weights to <code>runs/setup-check/broadcasts/</code>. The four-GPU launch instructions will identify the command for the synchronous reference, the scheduling code you can edit, and where the full runs write their logs and adapters.</p>
+<h2 id="worker-scheduling">7. Comparing the two runs</h2>
+<p>First run the synchronous reference long enough to see a complete update. Check when the workers started and finished their games, when the trainer had enough games, and when each worker could use the new weights. Then make one change to the schedule. For the short comparison, start both runs from the same checkpoint and measure an equal interval beginning when the first games are dispatched. Count training updates that finish within that interval. You can let your preferred configuration train for longer before submitting.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Measure</th>
+<th>How to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trainer wait and worker wait</td>
+<td>Check whether the trainer waits for games or the workers wait for weights.</td>
+</tr>
+<tr>
+<td>Groups accepted and groups expired</td>
+<td>Check how much of the completed work the trainer could use. Accepted groups can still have equal rewards and give no relative learning signal.</td>
+</tr>
+<tr>
+<td>Completed updates in the same interval</td>
+<td>Check whether the schedule lets the trainer update the model more often.</td>
+</tr>
+<tr>
+<td>Wins on the public games</td>
+<td>Check whether the resulting model also plays better.</td>
+</tr>
+</tbody>
+</table></div>
+<p>If the trainer finishes few or no updates, first check whether complete groups are reaching it and whether they are still recent enough to use. If many groups expire, try starting fewer groups at once or loading newer weights sooner.</p>
+<h2 id="public-evaluation">8. Public evaluation</h2>
+<p>The starter includes <strong>32 public Wordle games</strong>. Their target words are excluded from its training stream. Use the same games to check the starting model and compare your checkpoints. Serve the starting model in one terminal and run the evaluator from another terminal in the same work directory.</p>
+<pre><code class="language-bash"># Terminal 1
+bash run.sh serve --host 127.0.0.1 --port 8000
+
+# Terminal 2
+bash run.sh reference --output start-score.json
+</code></pre>
+<p>To check a trained model, stop the starting-model server and restart it with your exported adapter directory.</p>
+<pre><code class="language-bash"># Terminal 1
+bash run.sh serve --host 127.0.0.1 --port 8000 \
+  --lora-modules candidate=/absolute/path/to/adapter
+
+# Terminal 2
+bash run.sh reference --model candidate --output candidate-score.json
+</code></pre>
+<p>The report lists wins and per-game results. In the package check, the starting model won 1 of 32 games. One additional win changes the public score by about three percentage points.</p>
+<h2 id="server-submission">9. Submission and grading</h2>
+<p>Keep your submission in <strong>one folder on your own persistent course storage</strong>. The teaching team reads it in place. The course registry stores only the absolute path to that folder. Use storage that the grading machine can mount, and keep the folder available until grading is complete.</p>
+<h3 id="prepare-your-submission">Prepare your submission</h3>
+<p>Use the following names and layout. Submit exactly one adapter, exported from the checkpoint you want graded.</p>
+<pre><code>wordle-submission/
+├── adapter/
+│   ├── adapter_config.json
+│   └── adapter_model.safetensors
+├── report.md
+├── code/
+├── config/
+└── logs/
+    ├── reference.log
+    ├── candidate.log
+    └── final.log        # Required if the submitted adapter came from a separate run
+</code></pre>
+<p>Put your scheduling code and any changed launch scripts in <code>code/</code>, the settings used for your runs in <code>config/</code>, and the corresponding training logs in <code>logs/</code>. Include the files themselves so the grading machine can open them. To check your export, use the command in section 8 with your submission's <code>adapter/</code> directory as the adapter path.</p>
+<p>Write a short Markdown report in <code>report.md</code>. One page is enough. Include:</p>
+<ul>
+<li>What you changed in the scheduler and what effect you expected.</li>
+<li>A table comparing the synchronous reference and your schedule over the same time window. Give the window length, trainer and worker wait time, groups accepted and expired, completed updates, and public Wordle wins out of 32 for each run. Say what changed and use the logs to explain why.</li>
+<li>Which run and update produced the submitted adapter, its public Wordle score, and the commands and configurations you used.</li>
+</ul>
+<h3 id="register-the-path">Register the path</h3>
+<p>Run the following once the teaching team announces the registry for your cluster. Replace the example student ID, submission directory, and registry directory with your own values. Your submission and registry must both be reachable from your cluster.</p>
+<pre><code class="language-bash">STUDENT_ID=1234567890
+SUBMISSION=/data/1234567890/wordle-submission
+REGISTRY=/path/announced/for/your/cluster
+
+(
+  set -e
+  SUBMISSION=$(realpath -e -- &quot;$SUBMISSION&quot;)
+  for FILE in report.md adapter/adapter_config.json adapter/adapter_model.safetensors; do
+    if [ ! -s &quot;$SUBMISSION/$FILE&quot; ]; then
+      printf 'Missing or empty file: %s\n' &quot;$FILE&quot; &gt;&amp;2
+      exit 1
+    fi
+  done
+  chmod -R a+rX,go-w -- &quot;$SUBMISSION&quot;
+  RECEIPT=$(mktemp &quot;$REGISTRY/.${STUDENT_ID}.XXXXXX&quot;)
+  printf '%s\n' &quot;$SUBMISSION&quot; &gt; &quot;$RECEIPT&quot;
+  chmod 644 &quot;$RECEIPT&quot;
+  mv -fT -- &quot;$RECEIPT&quot; &quot;$REGISTRY/$STUDENT_ID.txt&quot;
+  cat &quot;$REGISTRY/$STUDENT_ID.txt&quot;
+)
+</code></pre>
+<p>The command makes the submission files readable and keeps them writable only by their owner. The printed path is your receipt. To replace your submission before the deadline, run the command again with the same student ID. If the teaching team cannot reach the folder because a parent directory is private, ask them to check access with you.</p>
+<p>The teaching team loads <code>adapter/</code> with the supplied base model and evaluates it on a separate set of Wordle games. <strong>Your score is the fraction of those games the model wins.</strong> The report and logs document how you trained it.</p></article></div></div></main>
+<footer><div class="wrap footer-row"><span>AI Infrastructure · Machine Learning Systems · Fall 2026</span></div></footer></body></html>
