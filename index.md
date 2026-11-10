@@ -57,7 +57,7 @@ By the end of the course, students will be able to:
 | 5 | NPU Kernel Development | In-class Hackathon | Agentic NPU Kernel Development and Optimization, including FlashAttention |
 | 6 | AI Software Stack | Lecture | [The AI Software Stack as an Optimization Problem](/lectures/week-06/Lecture6_AI_Software_Stack_as_Optimization.pdf) |
 | 7 | LLM Training | Lecture | [LLM Parallel Training](/lectures/week-07/Lecture7-LLM-Parallel-Training-1027.pdf) |
-| 8 | LLM Training | Lecture | Advanced Topics in Large-scale LLM Training Systems |
+| 8 | LLM Training | Lecture | [Advanced Topics in Large-scale LLM Training Systems](/lectures/week-08/Lecture8-LLM-Parallel-Training-PartB.pdf) |
 | 9 | LLM Training | In-class Hackathon | [Decentralized Reinforcement Learning over the Internet](https://linux-slai.tail6d76d1.ts.net/labs/weak-network-rl/) |
 | 10 | LLM Inference | Lecture | LLM Inference Systems A–Z: Performance Optimization |
 | 11 | LLM Inference | In-class Hackathon | Agentic LLM-inference Infrastructure Development and Optimization |
