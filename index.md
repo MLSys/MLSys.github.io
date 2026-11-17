@@ -59,7 +59,7 @@ By the end of the course, students will be able to:
 | 7 | LLM Training | Lecture | [LLM Parallel Training](/lectures/week-07/Lecture7-LLM-Parallel-Training-1027.pdf) |
 | 8 | LLM Training | Lecture | [Advanced Topics in Large-scale LLM Training Systems](/lectures/week-08/Lecture8-LLM-Parallel-Training-PartB.pdf) |
 | 9 | LLM Training | In-class Hackathon | [Decentralized Reinforcement Learning over the Internet](/hackathon/2/) |
-| 10 | LLM Inference | Lecture | LLM Inference Systems A–Z: Performance Optimization |
+| 10 | LLM Inference | Lecture | [LLM Inference Systems A–Z: Performance Optimization](/lectures/week-10/Lecture10_Inference_Optimization.pdf)<br>Lecturer: Professor Xi |
 | 11 | LLM Inference | In-class Hackathon | Agentic LLM-inference Infrastructure Development and Optimization |
 | 12 | Agentic Workloads | Lecture | Agentic AI Workloads and Infrastructure |
 | 13 | Agentic Workloads | In-class Hackathon | Agentic Workload Infrastructure Development and Optimization |
